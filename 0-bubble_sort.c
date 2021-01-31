@@ -32,7 +32,7 @@ void bubble_sort(int *array, size_t size)
 		}
 		/*incase it was already sorted*/
 		if (!swapped)
-			return
+			return;
 		j++;
 	}
 }
