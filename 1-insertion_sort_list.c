@@ -1,26 +1,5 @@
 #include "sort.h"
 
-/**
- * swapnext - swaps a node with the next node in a doubly linked list
- * @current: the current node
- * @head: head of the doubly linked list
- */
-void swapnext(listint_t *current, listint_t **head)
-{
-	listint_t *tmp = NULL;
-
-	tmp = current->next;
-	if (tmp->next)
-		tmp->next->prev = current;
-	if(current->prev)
-		current->prev->next = tmp;
-	else
-		*head = current;
-	current->next = current->next->next;
-	tmp->prev = current->prev;
-	tmp->next = current;
-	current->prev = tmp;
-}
 
 /**
  * swapprev - swaps a node with the previous node in a doubly linked list
@@ -34,7 +13,7 @@ void swapprev(listint_t *current, listint_t **head)
 	tmp = current->prev;
 	if (current->next)
 		current->next->prev = tmp;
-	if(tmp->prev)
+	if (tmp->prev)
 		tmp->prev->next = current;
 	else
 		*head = current;
@@ -58,10 +37,8 @@ void insertion_sort_list(listint_t **list)
 	{
 		prev = current->prev;
 		/*move the current element some steps back until in position*/
-		while (1)
+		while (prev)
 		{
-			if (!prev)
-				break;
 			if (current->n > prev->n)
 				break;
 			/*swap the two nodes if they are out of order*/
