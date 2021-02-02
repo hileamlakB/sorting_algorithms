@@ -78,7 +78,7 @@ void buildMaxHeap(int *array, size_t size)
 }
 
 /**
- * heap_sort: an implementaion of the heap_sort algorithm
+ * heap_sort - an implementaion of the heap_sort algorithm
  * @array: the array to be sorted
  * @size: the size of the array
  */
@@ -86,6 +86,9 @@ void heap_sort(int *array, size_t size)
 {
 	size_t end = size - 1;
 	size_t root = 0;
+
+	if (size <= 1)
+		return;
 
 	buildMaxHeap(array, size);
 
