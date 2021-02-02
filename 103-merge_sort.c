@@ -16,6 +16,9 @@ void print_elements(int *array, size_t size)
 
 /**
 * merge_sort_rec - a recursive merging algorithm
+* in this implmentation one workgin array is utilized
+* and most of the calculation (the dividing) is done
+* on the actuall array
 * @array: the array to be sorted
 * @working_array: an array of equal size to array for
 * temp work.
@@ -29,7 +32,7 @@ size_t merge_sort_rec(int *array, int *working_array, size_t size)
 	size_t half = (size_t)(size / 2);
 
 	if (size <= 1)
-		return size;
+		return (size);
 
 	/*sort each half*/
 	left = merge_sort_rec(array, working_array, half);
