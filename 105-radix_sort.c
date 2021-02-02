@@ -108,12 +108,11 @@ void radix_sort(int *array, size_t size)
 	const size_t NUM_DIGIT = 10;
 	size_t current_d = 1, i = 0, j;
 	bool found_d = true;
-	int digit;
-
-	int **bucket = create_da(NUM_DIGIT, size + 1);
+	int digit, **bucket;
 
 	if (size <= 1)
 		return;
+	bucket = create_da(NUM_DIGIT, size + 1);
 	if (!bucket)
 		return;
 	/*set the empty space to be 1*/
