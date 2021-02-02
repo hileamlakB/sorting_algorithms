@@ -38,11 +38,11 @@ void counting_sort(int *array, size_t size)
 	for (i = 0; (int)i < (int)max + 1; i++)
 		count[i] = 0;
 	for (i = 0; (int)i < (int)size; i++)
-		count[array[i]] += 1;
+		count[array[i] - 1] += 1;
 	for (i = 0; (int)i < (int)max + 1; i++)
 		sum += count[i], count[i] = sum;
 	for (i = 0; (int)i < (int)size; i++)
-		count[max + count[array[i]]] = array[i], count[array[i]] -= 1;
+		count[max + count[array[i] - 1]] = array[i], count[array[i] - 1] -= 1;
 
 	/*copy the element back to array*/
 	for (i = 0; (int)i < (int)size; i++)

@@ -53,7 +53,7 @@ void quick_sort_rec(int *array, size_t size, size_t beg, size_t end)
 			quick_sort_rec(array, size, beg, end);
 			break;
 		}
-		if (array[l] > pivot)
+		if (array[l] >= pivot)
 			lfound = true;
 		if (array[r] < pivot)
 			rfound = true;

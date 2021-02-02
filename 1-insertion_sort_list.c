@@ -30,7 +30,6 @@ void swapprev(listint_t *current, listint_t **head)
  */
 void insertion_sort_list(listint_t **list)
 {
-
 	listint_t *current = *list, *prev_tmp = NULL, *prev = NULL;
 
 	while (current)

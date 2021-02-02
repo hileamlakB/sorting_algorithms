@@ -11,7 +11,7 @@ void swapnext(listint_t *current, listint_t **head)
 	tmp = current->next;
 	if (tmp->next)
 		tmp->next->prev = current;
-	if(current->prev)
+	if (current->prev)
 		current->prev->next = tmp;
 	else
 		*head = current;
@@ -33,7 +33,7 @@ void swapprev(listint_t *current, listint_t **head)
 	tmp = current->prev;
 	if (current->next)
 		current->next->prev = tmp;
-	if(tmp->prev)
+	if (tmp->prev)
 		tmp->prev->next = current;
 	else
 		*head = current;
@@ -71,6 +71,8 @@ void cocktail_sort_list(listint_t **list)
 			else
 				current = current->next;
 		}
+		if (!swaped)
+			return;
 		while (current->prev)
 		{
 			if (current->n < current->prev->n)

@@ -22,18 +22,19 @@ void swap(int *a, int *b)
  */
 void shell_sort(int *array, size_t size)
 {
-	int gc = 0, k, z;
+	int k, z;
 	size_t gap = 1;
 	size_t i, j;
 
 	/*find the maximum amount of divider*/
-	while (gap < size / 2)
-		gc += 1, gap = gc * 3 + 1;/*knuth sequence*/
-	gc--;
+	while (gap <= size)
+		gap = gap * 3 + 1;/*knuth sequence*/
 
-	while (gc >= 0)
+	while (gap > 0)
 	{
-		gap = gc * 3 + 1;/*knuth sequence*/
+		gap = (gap - 1) / 3;/*knuth sequence*/
+		if (gap < 1)
+			break;
 		/*find and sort all the elments with the @gap intevral*/
 		j = 0;
 		while (j < gap)
@@ -59,6 +60,5 @@ void shell_sort(int *array, size_t size)
 			j++;
 		}
 		print_array(array, size);
-		gc--;
 	}
 }
