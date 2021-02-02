@@ -2,7 +2,20 @@
 
 
 /**
-* selectoin_sort - an implementation of the selection sort algorithm
+ * swap - swaps two integers in an array
+ * @a: first number
+ * @b: second number
+ */
+void swap(int *a, int *b)
+{
+	int tmp = *a;
+
+	*a = *b;
+	*b = tmp;
+}
+
+/**
+* selection_sort - an implementation of the selection sort algorithm
 * @array: the array to be sorted
 * @size:size of the array
  */
@@ -26,9 +39,7 @@ void selection_sort(int *array, size_t size)
 		/*swap the smallest element with the current*/
 		if (array[i] != array[tmp_loc])
 		{
-			tmp = array[i];
-			array[i] = array[tmp_loc];
-			array[tmp_loc] = tmp;
+			swap(array + i, array + tmp_loc);
 			print_array(array, size);
 		}
 		i++;
