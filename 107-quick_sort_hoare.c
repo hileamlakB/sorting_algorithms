@@ -53,7 +53,8 @@ void quick_sort_rec(int *array, size_t size, size_t beg, size_t end)
 		swapnprint(array + r, array + l, array, size);
 	}
 	if (l > beg)
-		quick_sort_rec(array, size, beg, l - 1);
+		if (l - 1 > beg)
+			quick_sort_rec(array, size, beg, l - 1);
 	if (end > l + 1)
 		quick_sort_rec(array, size, l + 1, end);
 }
