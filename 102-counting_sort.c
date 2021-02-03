@@ -30,8 +30,11 @@ void counting_sort(int *array, size_t size)
 
 	size_t i = 0, sum = 0;
 	size_t max = (size_t)maxof(array, size);
-	int *count = malloc(sizeof(int) * (max + 1 + size));
+	int *count;
 
+	if (!array)
+		return;
+	count = malloc(sizeof(int) * (max + 1 + size));
 	if (!count)
 		return;
 

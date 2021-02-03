@@ -52,8 +52,12 @@ void swapprev(listint_t *current, listint_t **head)
 void cocktail_sort_list(listint_t **list)
 {
 	bool swaped = true;
-	listint_t *current = *list;
+	listint_t *current = NULL;
 
+	if (!list)
+		return;
+
+	current = *list;
 	if (!current)
 		return;
 	while (swaped)

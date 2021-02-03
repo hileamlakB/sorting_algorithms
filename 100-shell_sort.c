@@ -23,9 +23,10 @@ void swap(int *a, int *b)
 void shell_sort(int *array, size_t size)
 {
 	int k, z;
-	size_t gap = 1;
-	size_t i, j;
+	size_t gap = 1, i, j;
 
+	if (size <= 1 || !array)
+		return;
 	/*find the maximum amount of divider*/
 	while (gap <= size)
 		gap = gap * 3 + 1;/*knuth sequence*/

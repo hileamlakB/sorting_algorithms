@@ -30,7 +30,7 @@ void quick_sort_rec(int *array, size_t size, size_t beg, size_t end)
 {
 	size_t l = beg, r = end;
 
-	if (end <= beg || size <= 1)
+	if (end <= beg || size <= 1 || !array)
 		return;
 	if (end == beg + 1)
 	{
