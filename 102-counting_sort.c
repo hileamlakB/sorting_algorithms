@@ -32,7 +32,7 @@ void counting_sort(int *array, size_t size)
 	size_t max = (size_t)maxof(array, size);
 	int *count;
 
-	if (!array)
+	if (!array || size <= 1)
 		return;
 	count = malloc(sizeof(int) * (max + 1 + size));
 	if (!count)
