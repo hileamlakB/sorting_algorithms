@@ -2,68 +2,96 @@
 
 
 
+/**
+ * swap - swaps two integers in an array
+ * @a: first number
+ * @b: second number
+ */
+void swap(int *a, int *b)
+{
+	int tmp = *a;
+
+	*a = *b;
+	*b = tmp;
+}
+
+/**
+ * mergeup - creats an increasing bitonic sequence by merging
+ * two parts of the array
+ * @array: the array to be merged it must be a bitonic sequence
+ * @size: the size of the subset array
+ * @fullsize: the full size of the whole array
+ */
+void mergeup(int *array, size_t size, size_t fullsize)
+{
+	int diff = size / 2;
+	int i, j;
+
+	printf("Result [%i/%i] (UP):\n", (int)size, (int)fullsize);
+
+	for (i = diff; i > 0; i--)
+		for (j = 0; j + i < (int)size; j++)
+			if (array[j] > array[j + i])
+				swap(array + j, array + j + i);
+	print_array(array, size);
+}
+/**
+ * mergedown - creats a decreasing bitonic sequence by merging
+ * two parts of the array
+ * @array: the array to be merged it must be a bitonic sequence
+ * @size: the size of the subset array
+ * @fullsize: the full size of the whole array
+ */
+void mergedown(int *array, size_t size, size_t fullsize)
+{
+	int diff = size / 2;
+	int i, j;
+
+	printf("Result [%i/%i] (DOWN):\n", (int)size, (int)fullsize);
+	for (i = diff; i > 0; i--)
+		for (j = 0; j + i < (int)size; j++)
+			if (array[j] < array[j + i])
+				swap(array + j, array + j + i);
+
+	print_array(array, size);
+}
+
+/**
+ * bitonicSort - a recurive helper function for the bitonic sort algorithm
+ * @array: the array to be sorted
+ * @size: the size of the aray/ sub array in the case of recusive calls
+ * @fullsize: the full size of the array before subarrays were taken out
+ */
+void bitonicSort(int *array, size_t size, size_t fullsize)
+{
+	size_t mid = size / 2;
+
+	if (size > 1)
+	{
+		printf("Merging [%i/%i] (UP):\n", (int)size, (int)fullsize);
+		print_array(array, size);
+		bitonicSort(array, mid, fullsize);
+		mergeup(array, size, fullsize);
+
+		/*if there is nothing left to be merged*/
+		if (size + size > fullsize)
+			return;
+		printf("Merging [%i/%i] (DOWN):\n", (int)size, (int)fullsize);
+		print_array(array + size, size);
+		bitonicSort(array + size, mid, fullsize);
+		mergedown(array + size, size, fullsize);
+	}
+
+}
+
+/**
+ * bitonic_sort - an implementation of the bitonic sort algorithm
+ * @array: the array to be sorted
+ * @size: the size of the aray
+ */
 void bitonic_sort(int *array, size_t size)
 {
-
-
-
-
-}
-
-/* C++ Program for Bitonic Sort. Note that this program
-   works only when size of input is a power of 2. */
-#include<bits/stdc++.h>
-using namespace std;
-
-/*The parameter dir indicates the sorting direction, ASCENDING
-  or DESCENDING; if (a[i] > a[j]) agrees with the direction,
-  then a[i] and a[j] are interchanged.*/
-void compAndSwap(int a[], int i, int j, int dir)
-{
-	if (dir==(a[i]>a[j]))
-		swap(a[i],a[j]);
-}
-
-/*It recursively sorts a bitonic sequence in ascending order,
-  if dir = 1, and in descending order otherwise (means dir=0).
-  The sequence to be sorted starts at index position low,
-  the parameter cnt is the number of elements to be sorted.*/
-void bitonicMerge(int a[], int low, int cnt, int dir)
-{
-	if (cnt>1)
-	{
-		int k = cnt/2;
-		for (int i=low; i<low+k; i++)
-			compAndSwap(a, i, i+k, dir);
-		bitonicMerge(a, low, k, dir);
-		bitonicMerge(a, low+k, k, dir);
-	}
-}
-
-/* This function first produces a bitonic sequence by recursively
-   sorting its two halves in opposite sorting orders, and then
-   calls bitonicMerge to make them in the same order */
-void bitonicSort(int a[],int beg, int end)
-{
-	if (cnt>1)
-	{
-		int k = cnt/2;
-
-		// sort in ascending order since dir here is 1
-		bitonicSort(a, low, k, 1);
-
-		// sort in descending order since dir here is 0
-		bitonicSort(a, low+k, k, 0);
-
-		// Will merge wole sequence in ascending order
-		// since dir=1.
-		bitonicMerge(a,low, cnt, dir);
-	}
-}
-
-/* Caller of bitonicSort for sorting the entire array of
-   length N in ASCENDING order */
-void bitonic_sort(int *array, size_t size)
-{
-	bitonicSort(array, 0, size);
+	if (!array || size < 2)
+		return;
+	bitonicSort(array, size, size);
 }
