@@ -11,41 +11,41 @@ int cmpDeckNode(deck_node_t *c1, deck_node_t *c2)
 {
 	int c1Value, c2Value;
 
+	/*compare with kind*/
 	if (c1->card->kind > c2->card->kind)
 		return (1);
 	if (c1->card->kind < c2->card->kind)
 		return (-1);
+
+	/*if kind is simillar extract value*/
+	if (!strcmp(c1->card->value, "Jack"))
+		c1Value = 11;
+	else if (!strcmp(c1->card->value, "Queen"))
+		c1Value = 12;
+	else if (!strcmp(c1->card->value, "King"))
+		c1Value = 13;
+	else if (!strcmp(c1->card->value, "Ace"))
+		c1Value = 0;
 	else
-	{
-		if (!strcmp(c1->card->value, "Jack"))
-			c1Value = 11;
-		else if (!strcmp(c1->card->value, "Queen"))
-			c1Value = 12;
-		else if (!strcmp(c1->card->value, "King"))
-			c1Value = 13;
-		else if (!strcmp(c1->card->value, "Ace"))
-			c1Value = 0;
-		else
-			c1Value = atoi(c1->card->value);
+		c1Value = atoi(c1->card->value);
 
-		if (!strcmp(c2->card->value, "Jack"))
-			c2Value = 11;
-		else if (!strcmp(c2->card->value, "Queen"))
-			c2Value = 12;
-		else if (!strcmp(c2->card->value, "King"))
-			c2Value = 13;
-		else if (!strcmp(c2->card->value, "Ace"))
-			c2Value = 0;
-		else
-			c2Value = atoi(c2->card->value);
+	if (!strcmp(c2->card->value, "Jack"))
+		c2Value = 11;
+	else if (!strcmp(c2->card->value, "Queen"))
+		c2Value = 12;
+	else if (!strcmp(c2->card->value, "King"))
+		c2Value = 13;
+	else if (!strcmp(c2->card->value, "Ace"))
+		c2Value = 0;
+	else
+		c2Value = atoi(c2->card->value);
 
-		if (c1Value > c2Value)
-			return (1);
-		if (c1Value < c2Value)
-			return (-1);
-		else
-			return (0);
-	}
+	/*compare value*/
+	if (c1Value > c2Value)
+		return (1);
+	if (c1Value < c2Value)
+		return (-1);
+	return (0);
 }
 
 /**
@@ -94,8 +94,8 @@ void swapprev(deck_node_t *current, deck_node_t **head)
 }
 
 /**
- * cocktail_sort_list - implmentation of the cocktail sort
- * @list: a pointer to the head of the linked list to be
+ * sort_deck - sorts a deck
+ * @list: a pointer to the head of the dead to be
  *       sorted
  */
 void sort_deck(deck_node_t **list)
