@@ -41,7 +41,7 @@ void insertion_sort_list(listint_t **list)
 		/*move the current element some steps back until in position*/
 		while (prev)
 		{
-			if (current->n > prev->n)
+			if (current->n >= prev->n)
 				break;
 			/*swap the two nodes if they are out of order*/
 			swapprev(current, list);
