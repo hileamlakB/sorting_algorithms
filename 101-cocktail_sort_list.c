@@ -14,7 +14,7 @@ void swapnext(listint_t *current, listint_t **head)
 	if (current->prev)
 		current->prev->next = tmp;
 	else
-		*head = current;
+		*head = tmp;
 	current->next = current->next->next;
 	tmp->prev = current->prev;
 	tmp->next = current;
